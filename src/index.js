@@ -57,6 +57,7 @@ import {
   isSafari,
   uuId,
 } from './utils'
+import CastJs from './libs/CastJs'
 
 const IS_MOBILE = getIsMobile()
 
@@ -164,6 +165,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     locale: LOCALE.en_US,
     responsive: true,
     icon: DEFAULT_ICON,
+    castJs: new CastJs()
   }
 
   static propTypes = PROP_TYPES
@@ -543,9 +545,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 ) : showPlay ? (
                   <span className="group">
                     <span
-                      className="group chromecast"
-                      title={locale.castText}
-                      onClick={this.audioCast}
+                      className={ `group ${this.props.castJs.available ? 'cast-available': 'cast-unavailable'}` }
+                      title={this.props.castJs.available ? locale.castText : locale.castUnavailable}
+                      onClick={this.props.castJs.available ? this.audioCast : undefined}
                     >
                       {this.iconMap.chromecast}
                     </span>
@@ -1363,7 +1365,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   //
   audioCast = (value) => {
-      console.log(value)
+    if (this.props.castJs.available) {
+        const { musicSrc, name, cover } = this.state
+        const metadata = { title: name, poster: cover }
+        this.props.castJs.cast(musicSrc, metadata)
+    }
   }
 
   onAudioVolumeChange = () => {
