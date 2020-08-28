@@ -16,24 +16,25 @@ import Draggable from 'react-draggable'
 import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
 import {
-  AnimatePauseIcon,
-  AnimatePlayIcon,
-  CloseIcon,
-  DeleteIcon,
-  DownloadIcon,
-  FaMinusSquareOIcon,
-  LoadIcon,
-  LoopIcon,
-  LyricIcon,
-  MdVolumeDownIcon,
-  MdVolumeMuteIcon,
-  NextAudioIcon,
-  OrderPlayIcon,
-  PlayListsIcon,
-  PrevAudioIcon,
-  ReloadIcon,
-  RepeatIcon,
-  ShufflePlayIcon,
+    AnimatePauseIcon,
+    AnimatePlayIcon,
+    ChromecastIcon,
+    CloseIcon,
+    DeleteIcon,
+    DownloadIcon,
+    FaMinusSquareOIcon,
+    LoadIcon,
+    LoopIcon,
+    LyricIcon,
+    MdVolumeDownIcon,
+    MdVolumeMuteIcon,
+    NextAudioIcon,
+    OrderPlayIcon,
+    PlayListsIcon,
+    PrevAudioIcon,
+    ReloadIcon,
+    RepeatIcon,
+    ShufflePlayIcon,
 } from './components/Icon'
 import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
@@ -79,6 +80,7 @@ const DEFAULT_ICON = {
   orderLoop: <RepeatIcon />,
   shuffle: <ShufflePlayIcon />,
   loading: <LoadIcon />,
+  chromecast: <ChromecastIcon />,
 }
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -540,6 +542,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   this.iconMap.loading
                 ) : showPlay ? (
                   <span className="group">
+                    <span
+                      className="group chromecast"
+                      title={locale.castText}
+                      onClick={this.audioCast}
+                    >
+                      {this.iconMap.chromecast}
+                    </span>
                     <span
                       className="group prev-audio"
                       title={locale.previousTrackText}
@@ -1350,6 +1359,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   // 音量改变
   audioSoundChange = (value) => {
     this.setAudioVolume(value)
+  }
+
+  //
+  audioCast = (value) => {
+      console.log(value)
   }
 
   onAudioVolumeChange = () => {

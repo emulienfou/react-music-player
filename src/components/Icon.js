@@ -10,6 +10,7 @@ export {
   FaSpinner as LoadIcon,
   FaRegTrashAlt as DeleteIcon,
   FaAngleDoubleDown as ArrowDownIcon,
+  FaChromecast as ChromecastIcon
 } from 'react-icons/fa'
 
 export {
