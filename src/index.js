@@ -17,8 +17,7 @@ import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
 import {
   AnimatePauseIcon,
-  AnimatePlayIcon, ChromecastConnectIcon,
-  ChromecastIcon,
+  AnimatePlayIcon,
   CloseIcon,
   DeleteIcon,
   DownloadIcon,
@@ -58,6 +57,7 @@ import {
   uuId,
 } from './utils'
 import CastJs from './libs/CastJs'
+import { CastButton } from 'react-cast-sender'
 
 const IS_MOBILE = getIsMobile()
 
@@ -81,8 +81,6 @@ const DEFAULT_ICON = {
   orderLoop: <RepeatIcon />,
   shuffle: <ShufflePlayIcon />,
   loading: <LoadIcon />,
-  chromecast: <ChromecastIcon />,
-  chromecastConnected: <ChromecastConnectIcon />,
 }
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -408,7 +406,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         title={locale.castText}
         onClick={this.audioCast}
       >
-        {this.props.castJs.session ? this.iconMap.chromecastConnected : this.iconMap.chromecast}
+        <CastButton />
       </span>
     )
 

@@ -23,8 +23,6 @@ export {
   MdQueueMusic as PlayListsIcon,
   MdClose as CloseIcon,
   MdLibraryMusic as NotContentIcon,
-  MdCast as ChromecastIcon,
-  MdCastConnected as ChromecastConnectIcon
 } from 'react-icons/md'
 
 export { TiArrowShuffle as ShufflePlayIcon } from 'react-icons/ti'
