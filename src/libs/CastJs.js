@@ -243,9 +243,12 @@ export default class CastJs {
                 mediaInfo.tracks = tracks;
             }
             // Let's prepare the metadata
-            mediaInfo.metadata.images   = [new chrome.cast.Image(this.poster)];
-            mediaInfo.metadata.title    = this.title;
-            mediaInfo.metadata.subtitle = this.description;
+            mediaInfo.metadata.images       = [new chrome.cast.Image(this.poster)];
+            mediaInfo.metadata.title        = this.title;
+            mediaInfo.metadata.subtitle     = this.description;
+            mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.MUSIC_TRACK;
+            mediaInfo.metadata.songName     = 'test';
+            mediaInfo.metadata.artist       = 'test';
             // Prepare the actual request
             const request = new chrome.cast.media.LoadRequest(mediaInfo);
             // Didn't really test this currenttime thingy, dont forget
