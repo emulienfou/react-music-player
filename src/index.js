@@ -56,8 +56,9 @@ import {
   isSafari,
   uuId,
 } from './utils'
-import CastJs from './libs/CastJs'
 import { CastButton } from 'react-cast-sender'
+import { withCast } from "./components/withCast";
+import { withCastPlayer } from "./components/withCastPlayer";
 
 const IS_MOBILE = getIsMobile()
 
@@ -83,7 +84,7 @@ const DEFAULT_ICON = {
   loading: <LoadIcon />,
 }
 
-export default class ReactJkMusicPlayer extends PureComponent {
+class ReactJkMusicPlayer extends PureComponent {
   isDrag = false
 
   initPlayId = '' // 初始播放id
@@ -164,7 +165,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     locale: LOCALE.en_US,
     responsive: true,
     icon: DEFAULT_ICON,
-    castJs: new CastJs()
+    cast: null
   }
 
   static propTypes = PROP_TYPES
@@ -241,6 +242,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       autoHiddenCover,
       showDestroy,
       responsive,
+      cast,
+      togglePlay,
     } = this.props
 
     const { locale } = this
@@ -397,16 +400,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         onClick={!drag || toggle ? this.onDestroyPlayer : undefined}
       >
         {this.iconMap.destroy}
-      </span>
-    )
-
-    const CastComponent = (
-      <span
-        className={ `group chromecast` }
-        title={locale.castText}
-        onClick={this.audioCast}
-      >
-        <CastButton />
       </span>
     )
 
@@ -587,7 +580,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                 {ReloadComponent}
                 {DownloadComponent}
-                {this.props.castJs.available && CastComponent}
+                <CastButton />
                 {ThemeSwitchComponent}
                 {extendsContent || null}
 
@@ -1364,15 +1357,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   // 音量改变
   audioSoundChange = (value) => {
     this.setAudioVolume(value)
-  }
-
-  //
-  audioCast = (value) => {
-    if (this.props.castJs.available) {
-        const { musicSrc, name, cover, singer } = this.state
-        const metadata = { title: name, poster: cover, artist: singer }
-        this.props.castJs.cast(musicSrc, metadata)
-    }
   }
 
   onAudioVolumeChange = () => {
@@ -2160,3 +2144,5 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.onGetAudioInstance()
   }
 }
+
+export default withCast(withCastPlayer(ReactJkMusicPlayer))

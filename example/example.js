@@ -3,6 +3,7 @@ import Switch from 'rc-switch'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import swal from 'sweetalert'
+import { CastButton } from 'react-cast-sender'
 import { name, repository, version } from '../package.json'
 import ReactJkMusicPlayer from '../src'
 import Locale from '../src/config/locale'
@@ -10,6 +11,8 @@ import PLAY_MODE from '../src/config/playMode'
 import '../src/styles/index.less'
 import { createRandomNum } from '../src/utils'
 import './example.less'
+import { withCast } from "../src/components/withCast";
+import { withCastPlayer } from "../src/components/withCastPlayer";
 
 const audioList1 = [
   {
@@ -621,6 +624,41 @@ class Demo extends React.PureComponent {
     )
   }
 
+  renderChromecast() {
+    const {initialized, connected, deviceName} = this.props.cast
+    console.log(this.props)
+    return (
+        <>
+          <div style={{ width: '64px' }}>
+            <CastButton />
+          </div>
+          <h2>Chromecast</h2>
+          <table>
+            <thead>
+            <tr>
+              <th>key</th>
+              <th>value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>initialized</td>
+              <td>{String(initialized)}</td>
+            </tr>
+            <tr>
+              <td>connected</td>
+              <td>{String(connected)}</td>
+            </tr>
+            <tr>
+              <td>deviceName</td>
+              <td>{deviceName}</td>
+            </tr>
+            </tbody>
+          </table>
+        </>
+    )
+  }
+
   render() {
     const { params, unmount } = this.state
     return (
@@ -922,6 +960,7 @@ class Demo extends React.PureComponent {
             />
           </div>
           <div>{this.renderCustomUI()}</div>
+          <div>{this.renderChromecast()}</div>
         </section>
         {unmount ? null : (
           <ReactJkMusicPlayer
@@ -949,4 +988,4 @@ class Demo extends React.PureComponent {
   }
 }
 
-export default hot(Demo)
+export default hot(withCast(withCastPlayer(Demo)))
