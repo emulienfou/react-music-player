@@ -66,7 +66,7 @@ const DEFAULT_ICON = {
   play: <AnimatePlayIcon />,
   destroy: <CloseIcon />,
   close: <CloseIcon />,
-  delete: <DeleteIcon />,
+  delete: <DeleteIcon size={20} />,
   download: <DownloadIcon />,
   toggle: <FaMinusSquareOIcon />,
   lyric: <LyricIcon />,
