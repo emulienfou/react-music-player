@@ -21,7 +21,7 @@ module.exports = () => {
     entry: isDev
       ? [
           'react-hot-loader/patch',
-          `webpack-dev-server/client?http://${HOST}:${PORT}`,
+          `webpack-dev-server/client?https://${HOST}:${PORT}`,
           'webpack/hot/only-dev-server',
           path.join(__dirname, '../example'),
         ]

@@ -28,7 +28,7 @@
     "build:demo": "cross-env NODE_ENV=production webpack --progress --config  ./example/webpack.config.js",
     "build:netlify": "cross-env NETLIFY=true yarn build:demo ",
     "copy:less": "cp -r src/styles lib/styles && cp -r src/styles es/styles",
-    "demo": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
+    "demo": "cross-env NODE_ENV=development webpack-dev-server --https --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",
     "coverage": "yarn test --coverage",
     "ci:coverage": "npm run coverage && codecov",
