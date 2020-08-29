@@ -30,6 +30,7 @@ export default class CastJs {
         // Media variables
         this.source         = null;
         this.title          = null;
+        this.artist         = null;
         this.description    = null;
         this.poster         = null;
         this.subtitles      = [];
@@ -247,8 +248,7 @@ export default class CastJs {
             mediaInfo.metadata.title        = this.title;
             mediaInfo.metadata.subtitle     = this.description;
             mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.MUSIC_TRACK;
-            mediaInfo.metadata.songName     = 'test';
-            mediaInfo.metadata.artist       = 'test';
+            mediaInfo.metadata.artist       = this.artist;
             // Prepare the actual request
             const request = new chrome.cast.media.LoadRequest(mediaInfo);
             // Didn't really test this currenttime thingy, dont forget
