@@ -16,25 +16,25 @@ import Draggable from 'react-draggable'
 import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
 import {
-    AnimatePauseIcon,
-    AnimatePlayIcon,
-    ChromecastIcon,
-    CloseIcon,
-    DeleteIcon,
-    DownloadIcon,
-    FaMinusSquareOIcon,
-    LoadIcon,
-    LoopIcon,
-    LyricIcon,
-    MdVolumeDownIcon,
-    MdVolumeMuteIcon,
-    NextAudioIcon,
-    OrderPlayIcon,
-    PlayListsIcon,
-    PrevAudioIcon,
-    ReloadIcon,
-    RepeatIcon,
-    ShufflePlayIcon,
+  AnimatePauseIcon,
+  AnimatePlayIcon, ChromecastConnectIcon,
+  ChromecastIcon,
+  CloseIcon,
+  DeleteIcon,
+  DownloadIcon,
+  FaMinusSquareOIcon,
+  LoadIcon,
+  LoopIcon,
+  LyricIcon,
+  MdVolumeDownIcon,
+  MdVolumeMuteIcon,
+  NextAudioIcon,
+  OrderPlayIcon,
+  PlayListsIcon,
+  PrevAudioIcon,
+  ReloadIcon,
+  RepeatIcon,
+  ShufflePlayIcon,
 } from './components/Icon'
 import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
@@ -82,6 +82,7 @@ const DEFAULT_ICON = {
   shuffle: <ShufflePlayIcon />,
   loading: <LoadIcon />,
   chromecast: <ChromecastIcon />,
+  chromecastConnected: <ChromecastConnectIcon />,
 }
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -407,7 +408,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         title={locale.castText}
         onClick={this.audioCast}
       >
-        {this.iconMap.chromecast}
+        {this.props.castJs.session ? this.iconMap.chromecastConnected : this.iconMap.chromecast}
       </span>
     )
 
