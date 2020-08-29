@@ -30,5 +30,4 @@ export default {
   controllerTitle: <FaHeadphonesIcon />,
   emptyLyricText: '暂无歌词',
   castText: '发送到Chromecast',
-  castUnavailable: '无法使用Chromecast',
 }
