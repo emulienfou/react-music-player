@@ -401,6 +401,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
       </span>
     )
 
+    const CastComponent = (
+      <span
+        className={ `group chromecast` }
+        title={locale.castText}
+        onClick={this.audioCast}
+      >
+        {this.iconMap.chromecast}
+      </span>
+    )
+
     const AudioController = (
       <div
         className={cls('react-jinke-music-player')}
@@ -545,13 +555,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 ) : showPlay ? (
                   <span className="group">
                     <span
-                      className={ `group ${this.props.castJs.available ? 'cast-available': 'cast-unavailable'}` }
-                      title={this.props.castJs.available ? locale.castText : locale.castUnavailable}
-                      onClick={this.props.castJs.available ? this.audioCast : undefined}
-                    >
-                      {this.iconMap.chromecast}
-                    </span>
-                    <span
                       className="group prev-audio"
                       title={locale.previousTrackText}
                       onClick={this.audioPrevPlay}
@@ -585,6 +588,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                 {ReloadComponent}
                 {DownloadComponent}
+                {this.props.castJs.available && CastComponent}
                 {ThemeSwitchComponent}
                 {extendsContent || null}
 
