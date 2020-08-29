@@ -1370,8 +1370,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //
   audioCast = (value) => {
     if (this.props.castJs.available) {
-        const { musicSrc, name, cover } = this.state
-        const metadata = { title: name, poster: cover }
+        const { musicSrc, name, cover, singer } = this.state
+        const metadata = { title: name, poster: cover, artist: singer }
         this.props.castJs.cast(musicSrc, metadata)
     }
   }
